@@ -13,7 +13,7 @@ namespace Metra.ManutenzioneDatiAssemblaggio
         [STAThread]
         static void Main()
         {
-            //controllo versione
+            //controllo versione, modificato
             bool IsExeChanged;
             Versioning.CheckCurrentVersion(out IsExeChanged);
             if (IsExeChanged)
