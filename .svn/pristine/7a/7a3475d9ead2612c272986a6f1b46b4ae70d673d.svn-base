@@ -1,0 +1,202 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace Metra.ManutenzioneDatiAssemblaggio
+{
+    public partial class frmMain : Form
+    {
+        public frmMain()
+        {
+            InitializeComponent();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            //carico globali
+            Globals.Load();
+            Globals.Main = this;
+
+            //versione
+            lblVersione.Text = string.Format("{0} {1}",
+                    Application.ProductName,
+                    Application.ProductVersion.ToString());
+
+            //utente
+            lblAzienda.Text = Globals.IDAzienda;
+            lblPc.Text = "PC: " + Authentication.MachineName;
+            lblUtente.Text = "USR: " + Authentication.UserName;
+            lblDatabase.Text = "DB: " + Globals.DatabaseName;
+
+            //carico i menu
+            ucMenu m;
+            int iTop = 5;
+            int iSpace = 5;
+
+            m = new ucMenu();
+            m.AddItem("Anagrafiche", "CTRL=ucParametri", 25);
+            m.AddItem("Log", "CTRL=ucLog", 25);
+
+            m.TitleText = "Archivi";
+            m.Tag = string.Empty; 
+            m.Parent = splitMain.Panel1;
+            m.Left = iSpace;
+            m.Top = iTop;
+            m.Width = splitMain.Panel1.Width - 2 * m.Left + 3;
+            m.Click += new EventHandler(m_Click);
+
+            iTop += m.Height + iSpace;
+
+            m = new ucMenu();
+            m.AddItem("Dati produzione", "CTRL=ucLots", 50);
+            m.AddItem("Fermi macchina", "CTRL=ucDowntime", 50);
+
+            m.TitleText = "Produzione";
+            m.Tag = string.Empty; 
+            m.Parent = splitMain.Panel1;
+            m.Left = iSpace;
+            m.Top = iTop;
+            m.Width = splitMain.Panel1.Width - 2 * m.Left + 3;
+            m.Click += new EventHandler(m_Click);
+
+            iTop += m.Height + iSpace;
+
+            LoadControlByName("ucLots", null, splitMain.Panel2);
+        }
+
+        void m_Click(object sender, EventArgs e)
+        {
+            //apro form o usercontrol corrispondente
+            string s = ((Control)sender).Tag.ToString();
+            string[] s2 = s.Split(';');
+
+            string sCtrl = "";
+            string sForm = "";
+            string sAction = "";
+            string sModal = "";
+            string sParams = "";
+            bool bModal = false;
+            for (int i = 0; i < s2.Length; i++)
+            {
+                if (s2[i].Length > 0)
+                {
+                    if (s2[i].Substring(0, 4).ToUpper() == "CTRL") sCtrl = s2[i].Substring(4);
+                    if (s2[i].Substring(0, 4).ToUpper() == "FORM") sForm = s2[i].Substring(4);
+                    if (s2[i].Substring(0, 6).ToUpper() == "ACTION") sAction = s2[i].Substring(6);
+                    if (s2[i].Substring(0, 6).ToUpper() == "DIALOG") sModal = s2[i].Substring(6);
+                    if (s2[i].Substring(0, 6).ToUpper() == "PARAMS") sParams = s2[i].Substring(6);
+                }
+            }
+            sCtrl = sCtrl.Replace("=", "");
+            sCtrl = sCtrl.Trim();
+            sForm = sForm.Replace("=", "");
+            sForm = sForm.Trim();
+            sAction = sAction.Replace("=", "");
+            sAction = sAction.Trim();
+            sModal = sModal.Replace("=", "");
+            sModal = sModal.Trim();
+            sParams = sParams.Replace("=", "");
+            sParams = sParams.Trim();
+            if (sParams == "") sParams = null;
+            bModal = sModal.ToUpper() == "TRUE";
+
+            //richiesta apertura di un form (sempre dialog)
+            if (sForm.Length > 0)
+            {
+                LoadFormByName(sForm, sParams, true);
+            }
+
+            //carico usercontrol in pannello2 (se non esiste già)
+            if (sCtrl.Length > 0)
+            {
+                LoadControlByName(sCtrl, sParams, splitMain.Panel2);
+            }
+
+            //comando
+            if (sAction == "QUIT") Close();
+        }
+
+        public bool LoadFormByName(string FormName, string Params, bool Dialog)
+        {
+            //richiesta apertura di un form (sempre dialog)
+            bool bOk = false;
+            if (FormName.Length > 0)
+            {
+                string sAppName = Application.ProductName + ".";
+
+                Form f = new Form();
+                object[] Args = null;
+                if (Params != null) if (Params.Length > 0) Args = Params.Split(',');
+                f = (Form)Type.GetType("Metra." + sAppName + FormName).InvokeMember(FormName, System.Reflection.BindingFlags.CreateInstance, null, null, Args);
+                bOk = true;
+
+                if (bOk)
+                {
+                    if (Dialog) f.ShowDialog();
+                    else f.Show();
+                }
+            }
+            return bOk;
+        }
+
+        public bool LoadControlByName(string ControlName, string Params, Control Parent)
+        {
+            //carico usercontrol in Parent (se non esiste già)
+            bool bLoad = true;
+            bool bOk = false;
+            if (ControlName.Length > 0)
+            {
+                if (Parent.Controls.Count != 0)
+                {
+                    bLoad = Parent.Controls[0].Name != ControlName;
+                    if (Params != null & Parent.Controls[0].Tag != null)
+                        bLoad |= Parent.Controls[0].Tag.ToString() != Params.ToString();
+                    else if (Params != ((Parent.Controls[0].Tag == null) ? "" : Parent.Controls[0].Tag.ToString()))
+                        bLoad = true;
+                }
+                if (bLoad)
+                {
+                    Parent.Controls.Clear();
+                    Parent.Refresh();
+                    string sAppName = "ManutenzioneDatiAssemblaggio.";// Application.ProductName + ".";
+
+                    //parametri
+                    object[] Args;
+                    if (Params != null) Args = Params.Split(',');
+                    else Args = null;
+
+                    //carico controllo
+                    List<Control> controlsToHide = new List<Control>();
+                    UserControl uc = (UserControl)Type.GetType("Metra." + sAppName + ControlName).InvokeMember(ControlName, System.Reflection.BindingFlags.CreateInstance, null, null, Args);
+                    foreach (Control c in uc.Controls)
+                    {
+                        if (!c.Visible) controlsToHide.Add(c);
+                        c.Visible = false;
+                    }
+                    uc.Visible = false;
+                    uc.Parent = Parent;
+                    uc.Tag = Params;
+                    uc.Dock = DockStyle.Fill;
+                    Color ControlBackColor = uc.BackColor;
+                    uc.BackColor = Color.Transparent;
+                    uc.Visible = true;
+                    uc.Focus();
+                    uc.BackColor = ControlBackColor;
+                    foreach (Control c in uc.Controls)
+                    {
+                        if (!controlsToHide.Contains(c)) c.Visible = true;
+                    }
+                    //esito
+                    bOk = true;
+                }
+            }
+            return bOk;
+        }
+
+        private void btnQyit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+    }
+}

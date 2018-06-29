@@ -1,0 +1,124 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data.SqlClient;
+
+namespace Metra.ManutenzioneDatiAssemblaggio
+{
+    class DbLock
+    {
+
+        public static bool BloccaLotto(string NumeroLotto, out string Errore)
+        {
+            //controllo se il lotto è modificabile
+            bool procedi = true;
+            Errore = "";
+            SqlConnection cnn = new SqlConnection(Properties.Settings.Default.ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int i;
+
+            cmd.Connection = cnn;
+            cmd.Parameters.AddWithValue("@lotto", NumeroLotto);
+            cmd.Parameters.AddWithValue("@data", DateTime.Today.AddMonths(-1));
+
+            //controllo se è già riconciliato
+            if (procedi)
+            {
+                cmd.CommandText = "SELECT ISNULL(RaccoltaDatiLotto_Lotti.Elab_Riconciliato,0)" +
+                    " FROM RaccoltaDatiLotto_Lotti" +
+                    " WHERE NumeroLotto = @lotto";
+                cnn.Open();
+                string flag =" ";
+                try { flag = cmd.ExecuteScalar().ToString(); }
+                catch { }
+                if (flag.ToString() == "True")
+                {
+                    Errore = "Lotto già riconciliato: Impossibile modificare.";
+                    procedi = false;
+                }
+                cnn.Close();
+            }
+
+            //prova a bloccare lotto (lo posso fare se non è bloccato o se è già bloccato
+            //dallo stesso utente che sta richiedendo il blocco)
+            if (procedi)
+            {
+                cmd.CommandText = "UPDATE RaccoltaDatiLotto_Lotti" +
+                    " SET Lock = 1, Lock_Ts = GETDATE(), Lock_Usr = @usr" +
+                    " WHERE" +
+                    "  (NumeroLotto=@lotto AND ISNULL(Lock,0)=0)" +
+                    " OR" +
+                    "  (NumeroLotto=@lotto AND Lock=1 AND Lock_Usr = @usr)";
+                cmd.Parameters.AddWithValue("@usr", Environment.MachineName + "\\" + Environment.UserName);
+                cnn.Open();
+                i = cmd.ExecuteNonQuery();
+                if (i == 0) Errore = StatoBloccoLotto(NumeroLotto);
+                cnn.Close();
+            }
+            else
+            {
+                i = 0;
+            }
+
+            return i >= 1;
+        }
+
+        public static string StatoBloccoLotto(string NumeroLotto)
+        {
+            //leggo stato lock del lotto
+            SqlConnection cnn = new SqlConnection(Properties.Settings.Default.ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cnn;
+            cmd.CommandText = "SELECT ISNULL(Lock,0), Lock_Ts, Lock_Usr FROM RaccoltaDatiLotto_Lotti" +
+                " WHERE NumeroLotto=@lotto";
+            cmd.Parameters.AddWithValue("@lotto", NumeroLotto);
+            cnn.Open();
+            SqlDataReader r = cmd.ExecuteReader();
+            string stato = "";
+            if (r.Read())
+            {
+                if (Convert.ToBoolean(r[0]))
+                {
+                    stato = "Bloccato da " + r[2].ToString() + " il " + r[1].ToString();
+                }
+                else
+                {
+                    stato = "Libero";
+                }
+            }
+            r.Close();
+            cnn.Close();
+
+            return stato;
+        }
+
+        public static bool SbloccaLotto(string NumeroLotto)
+        {
+            //sblocca solo se è lo stesso utente che ha bloccato
+            return SbloccaLotto(NumeroLotto, false);
+        }
+
+        public static bool SbloccaLotto(string NumeroLotto, bool ForzaSblocco)
+        {
+            //sblocca anche se bloccato da altro utente
+            SqlConnection cnn = new SqlConnection(Properties.Settings.Default.ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cnn;
+            cmd.CommandText = "UPDATE RaccoltaDatiLotto_Lotti" +
+                " SET Lock = 0, Lock_Ts = NULL, Lock_Usr = NULL" +
+                " WHERE (NumeroLotto=@lotto AND Lock=0)" +
+                " OR (NumeroLotto=@lotto AND Lock = 1";
+            if (!ForzaSblocco) cmd.CommandText += " AND Lock_Usr = @usr";
+            cmd.CommandText += ")";
+            cmd.Parameters.AddWithValue("@lotto", NumeroLotto);
+            cmd.Parameters.AddWithValue("@usr", Environment.MachineName + "\\" + Environment.UserName);
+            cnn.Open();
+            int i = cmd.ExecuteNonQuery();
+            cnn.Close();
+
+            return i == 1;
+        }
+
+    }
+}

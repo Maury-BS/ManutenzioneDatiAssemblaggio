@@ -1,0 +1,61 @@
+using System;
+using System.Data;
+using System.Windows.Forms;
+
+namespace Metra.ManutenzioneDatiAssemblaggio
+{
+    public partial class ucLog : UserControl
+    {
+        DbBridge db = new DbBridge();
+        DataTable dt = null;
+        DsBridge.DsDataTable dbt;
+        string sQuery;
+        bool loading = true;
+
+        public ucLog()
+        {
+            InitializeComponent();
+
+            //colori
+            Skins.SetColors(this, Skins.ColorSet.StandardList);
+
+            //periodo: default mese corrente
+            Utils.SetPeriodo(dtpInizio, dtpFine);
+
+            //elenco
+            loading = false;
+            Filtra(null, null);
+        }
+
+        private void Filtra(object sender, EventArgs e)
+        {
+            if (loading) return;
+
+            //carico tabella da db
+            dt = new DataTable();
+            sQuery = "SELECT * FROM Log WHERE Ts BETWEEN @data1 AND @data2 ORDER BY Ts";
+            db.Command.Parameters.Clear();
+            db.Command.Parameters.AddWithValue("data1", dtpInizio.Value);
+            db.Command.Parameters.AddWithValue("data2", dtpFine.Value.AddDays(1));
+            db.ReadDataTable(dt, sQuery);
+
+            //collego datatable
+            if (dbt != null) dbt.Clear();
+            dbt = new DsBridge.DsDataTable(dgvElenco, dt);
+            dbt.Load(true);
+
+            //larghezza colonne
+            dgvElenco.AllowUserToResizeColumns = true;
+            for (int i = 0; i < dgvElenco.ColumnCount - 1; i++)
+            {
+                dgvElenco.Columns[i].Resizable = DataGridViewTriState.True;
+                dgvElenco.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+            if (dgvElenco.ColumnCount > 0)
+            {
+                dgvElenco.Columns[dgvElenco.ColumnCount - 1].Resizable = DataGridViewTriState.True;
+                dgvElenco.Columns[dgvElenco.ColumnCount - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+    }
+}

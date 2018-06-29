@@ -1,0 +1,74 @@
+﻿using System;
+using System.Data;
+
+namespace Metra.ManutenzioneDatiAssemblaggio
+{
+    class Globals
+    {
+        public static frmMain Main;
+        public static DataTable Azienda;
+        public static string DatabaseName;
+        public static DataTable CausaliChiusura;
+        public static DataTable CausaliFermo;
+        public static DataTable CausaliProdRidotta;
+        //public static DataTable CausaliScarto;
+        public static DataTable Operatori;
+        public static DataTable Postazioni;
+        public static string PrefissoLotto;
+        public static string IDAzienda;
+
+        public static void Load()
+        {
+            DbBridge db = new DbBridge();
+            DatabaseName = db.Connection.Database;
+            string s;
+
+            //azienda
+            Azienda = new DataTable();
+            s = "SELECT * FROM Anagrafica.Aziende WHERE Attiva=1";
+            db.ReadDataTable(Azienda, s);
+            if (Azienda.Rows.Count == 0)
+            {
+                throw new Exception("Impossibile identificare azienda: Attivare in tabella 'Aziende'");
+            }
+            IDAzienda = Azienda.Rows[0]["ID"].ToString();
+            PrefissoLotto = Azienda.Rows[0]["Prefisso"].ToString();
+            if (PrefissoLotto.Length == 0)
+            {
+                throw new Exception("Prefisso azienda non valido!\nVerificare tabella 'Aziende' e parametro 'IDAzienda'");
+            }
+
+            //tabelle
+            CausaliChiusura = new DataTable();
+            s = @"SELECT   *
+                    FROM     (   SELECT 0 AS ID ,
+                                        '' AS Descrizione
+                                 UNION ALL
+                                 SELECT *
+                                 FROM   Anagrafica.CausaliChiusura
+                             ) CC
+                    ORDER BY CC.ID;";
+            db.ReadDataTable(CausaliChiusura, s);
+           
+            CausaliFermo = new DataTable();
+            s = "SELECT * FROM Anagrafica.CausaliFermo ORDER BY ID";
+            db.ReadDataTable(CausaliFermo, s);
+
+            CausaliProdRidotta = new DataTable();
+            s = "SELECT * FROM Anagrafica.CausaliProdRidotta ORDER BY ID";
+            db.ReadDataTable(CausaliProdRidotta, s);
+
+            //CausaliScarto = new DataTable();
+            //s = "SELECT * FROM Anagrafica.CausaliScarto ORDER BY ID";
+            //db.ReadDataTable(CausaliScarto, s);
+
+            Operatori = new DataTable();
+            s = "SELECT ID, Cognome + CASE WHEN Attivo=0 THEN ' (non attivo)' ELSE '' END AS Cognome FROM Anagrafica.Operatori ORDER BY ID";
+            db.ReadDataTable(Operatori, s);
+
+            Postazioni = new DataTable();
+            s = "SELECT * FROM Anagrafica.Postazioni ORDER BY ID";
+            db.ReadDataTable(Postazioni, s);
+        }
+    }
+}

@@ -1,0 +1,262 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace Metra.ManutenzioneDatiAssemblaggio
+{
+    public partial class frmLot : Form
+    {
+        Lotto Lotto;
+        DataGridView dgvAttrezzaggi = new DataGridView();
+        DataGridView dgvControlli = new DataGridView();
+        DataGridView dgvControlliAstine = new DataGridView();
+        DataGridView dgvFermi = new DataGridView();
+        DataGridView dgvOperatori = new DataGridView();
+        DataGridView dgvOrdini = new DataGridView();
+        DataGridView dgvProduzioni = new DataGridView();
+        DataGridView dgvScarti = new DataGridView();
+
+        DsBridge.DsDataRow dbr;
+        DsBridge.DsDataRow dbrTempiCalcolati;
+        DsBridge.DsDataTable dbtAttrezzaggi;
+        DsBridge.DsDataTable dbtControlli;
+        DsBridge.DsDataTable dbtControlliAstine;
+        DsBridge.DsDataTable dbtFermi;
+        DsBridge.DsDataTable dbtOperatori;
+        DsBridge.DsDataTable dbtOrdini;
+        DsBridge.DsDataTable dbtProduzioni;
+
+        public frmLot(int id)
+        {
+            InitializeComponent();
+
+            //dimensione
+            this.Width = Convert.ToInt32(Screen.FromControl(this).Bounds.Width * 0.9);
+
+            //dati lotto
+            Lotto = new Lotto();
+            Lotto.Load(id);
+
+            //tabelle collegate
+            dgvAttrezzaggi.Parent = tabAttrezzaggi;
+            dgvAttrezzaggi.Dock = DockStyle.Fill;
+
+            SplitContainer spcControlli = new SplitContainer();
+            spcControlli.Parent = tabControlli;
+            spcControlli.Dock = DockStyle.Fill;
+            spcControlli.Orientation = Orientation.Horizontal;
+            spcControlli.SplitterDistance = tabControlli.Height * 2 / 3;
+            dgvControlli.Parent = spcControlli.Panel1;
+            dgvControlli.Dock = DockStyle.Fill;
+            dgvControlliAstine.Parent = spcControlli.Panel2;
+            dgvControlliAstine.Dock = DockStyle.Fill;
+
+            dgvFermi.Parent = tabFermi;
+            dgvFermi.Dock = DockStyle.Fill;
+
+            dgvOperatori.Parent = tabOperatori;
+            dgvOperatori.Dock = DockStyle.Fill;
+
+            dgvOrdini.Parent = tabOrdini;
+            dgvOrdini.Dock = DockStyle.Fill;
+
+            dgvProduzioni.Parent = tabProduzioni;
+            dgvProduzioni.Dock = DockStyle.Fill;
+
+            //lotto -> form
+            dbr = new DsBridge.DsDataRow(Lotto.Lotti, Lotto.Lotti.Rows[0]);
+            dbr.AddField(txtID);
+            dbr.AddField(cmbIDCausaleChiusura);
+            dbr.Fields(cmbIDCausaleChiusura).DataSource = Globals.CausaliChiusura;
+            dbr.Fields(cmbIDCausaleChiusura).DataSourceField = "ID";
+            dbr.Fields(cmbIDCausaleChiusura).DisplayMember = "Descrizione";
+            dbr.AddField(txtIDPostazione);
+            dbr.AddField(txtIDTurno);
+            dbr.AddField(txtNumeroLotto);
+            dbr.AddField(txtCodiceCra);
+            dbr.AddField(txtCodiceArticolo);
+            dbr.AddField(txtTsInizio);
+            dbr.AddField(txtTsFine);
+            dbr.AddField(chkCampionatura);
+            dbr.AddField(chkElab_Riconciliare);
+            dbr.AddField(chkElab_Riconciliato);
+            dbr.AddField(txtElab_Diagnostica);
+            dbr.AddField(txtElab_DiagnosticaMsg);
+
+            dbrTempiCalcolati = new DsBridge.DsDataRow(Lotto.TempiCalcolati, Lotto.TempiCalcolati.Rows[0]);
+            dbrTempiCalcolati.AddField(txtQtaOrdine);
+            dbrTempiCalcolati.AddField(txtQtaProdotta);
+            dbrTempiCalcolati.AddField(txtMinutiAttrezzaggio);
+            dbrTempiCalcolati.AddField(txtMinutiAttrezzaggio_Calendario);
+            dbrTempiCalcolati.AddField(txtMinutiDichiarazioni);
+            dbrTempiCalcolati.AddField(txtMinutiDichiarazioni_Calendario);
+            dbrTempiCalcolati.AddField(txtMinutiFermo);
+            dbrTempiCalcolati.AddField(txtMinutiFermo_Calendario);
+            dbrTempiCalcolati.AddField(txtMinutiProduzione);
+            dbrTempiCalcolati.AddField(txtMinutiProduzione_Calendario);
+
+            dbtAttrezzaggi = new DsBridge.DsDataTable(dgvAttrezzaggi, Lotto.Attrezzaggi, "", "IDLotto", Lotto.ID);
+            dbtControlli = new DsBridge.DsDataTable(dgvControlli, Lotto.Controlli, "", "IDLotto", Lotto.ID);
+            dbtControlliAstine = new DsBridge.DsDataTable(dgvControlliAstine, Lotto.ControlliAstine); //, "", "IDLotto", Lotto.ID);
+            dbtFermi = new DsBridge.DsDataTable(dgvFermi, Lotto.Fermi, "", "IDLotto", Lotto.ID);
+            dbtOperatori = new DsBridge.DsDataTable(dgvOperatori, Lotto.Operatori, "", "IDLotto", Lotto.ID);
+            dbtOrdini = new DsBridge.DsDataTable(dgvOrdini, Lotto.Ordini, "", "IDLotto", Lotto.ID);
+            dbtProduzioni = new DsBridge.DsDataTable(dgvProduzioni, Lotto.Produzioni, "", "IDLotto", Lotto.ID);
+
+            dbr.Load();
+            dbrTempiCalcolati.Load();
+            dbtAttrezzaggi.Load();
+            dbtControlli.Load();
+            dbtControlliAstine.Load();
+            dbtFermi.Load();
+            dbtOperatori.Load();
+            dbtOrdini.Load();
+            dbtProduzioni.Load();
+
+            //layout dataGridView
+            dgvControlli.AllowUserToAddRows = false;
+            dgvControlliAstine.AllowUserToAddRows = false;
+            dgvControlliAstine.Columns["CodiceAstina"].ReadOnly = true;
+
+            dgvAttrezzaggi.Columns["DurataMinuti"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvAttrezzaggi.Columns["Note"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            
+            dgvProduzioni.Columns["DurataMinuti"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvProduzioni.Columns["Note"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            
+            dgvOperatori.Columns["IDOperatore"].Visible = false;
+            DataGridViewComboBoxColumn col = new DataGridViewComboBoxColumn();
+            col.FlatStyle = FlatStyle.Flat;
+            col.Name = "cmbIDOperatore";
+            col.HeaderText = "Operatore";
+            col.DataPropertyName = "IDOperatore";
+            col.DataSource = Globals.Operatori;
+            col.DisplayMember = "Cognome";
+            col.ValueMember = "ID";
+            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvOperatori.Columns.Add(col);
+
+            dgvFermi.Columns["IDCausaleFermo"].Visible = false;
+            col = new DataGridViewComboBoxColumn();
+            col.FlatStyle = FlatStyle.Flat;
+            col.Name = "cmbIDCausaleFermo";
+            col.HeaderText = "Causale";
+            col.DataPropertyName = "IDCausaleFermo";
+            col.DataSource = Globals.CausaliFermo;
+            col.DisplayMember = "Descrizione";
+            col.ValueMember = "ID";
+            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvFermi.Columns.Insert(dgvFermi.ColumnCount, col);
+
+            GridSetup(dgvAttrezzaggi);
+            GridSetup(dgvControlli);
+            GridSetup(dgvControlliAstine);
+            GridSetup(dgvFermi);
+            GridSetup(dgvOperatori);
+            GridSetup(dgvOrdini);
+            GridSetup(dgvProduzioni);
+            GridSetup(dgvScarti);
+            
+            //eventi datagrid
+            dgvControlli.SelectionChanged += dgvControlli_SelectionChanged;
+        }
+
+        void dgvControlli_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvControlli.CurrentRow != null)
+            {
+                Lotto.ControlliAstine.DefaultView.RowFilter = String.Format("IDLottoControllo={0}", dgvControlli.CurrentRow.Cells["ID"].Value);
+            }
+            else
+            {
+                Lotto.ControlliAstine.DefaultView.RowFilter = "IDLottoControllo=-1";
+            }
+        }
+
+        private void GridSetup(DataGridView dgv)
+        {
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv.RowTemplate.Height = 24;
+            if (dgv.Columns.Contains("ID")) dgv.Columns["ID"].Visible = false;
+            if (dgv.Columns.Contains("IDLotto")) dgv.Columns["IDLotto"].Visible = false;
+            if (dgv.Columns.Contains("IDLottoControllo")) dgv.Columns["IDLottoControllo"].Visible = false;
+            if (dgv.Columns.Contains("Inizio")) dgv.Columns["Inizio"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+            if (dgv.Columns.Contains("Fine")) dgv.Columns["Fine"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+            if (dgv.Columns.Contains("Ts")) dgv.Columns["Ts"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+            if (dgv.Columns.Contains("DurataMinuti")) dgv.Columns["DurataMinuti"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            if (dgv.Columns.Contains("Qta")) dgv.Columns["Qta"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            if (dgv.Columns.Contains("NumeroPassate")) dgv.Columns["NumeroPassate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            if (dgv.Columns.Contains("Lunghezza")) dgv.Columns["Lunghezza"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            foreach (DataGridViewColumn c in dgv.Columns)
+            {
+                if (c.AutoSizeMode != DataGridViewAutoSizeColumnMode.Fill) c.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                if (c.Name.StartsWith("ProvaT_") || c.Name.StartsWith("ProvaQ_")) c.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
+        }
+
+        private Result Save()
+        {
+            //form -> lotto
+            dbr.Save();
+            dbtAttrezzaggi.Save();
+            dbtControlli.Save();
+            dbtControlliAstine.Save();
+            dbtFermi.Save();
+            dbtOperatori.Save();
+            dbtOrdini.Save();
+            dbtProduzioni.Save();
+
+            //salvo e chiudo
+            Result res = Lotto.Save();
+            if (res.Ok)
+            {
+                DbBridge db = new DbBridge();
+                db.Log(DbBridge.LogType.EDIT, Lotto.LotNumber, string.Format("SALVATO LOTTO: {0}", Lotto.LotNumber));
+            }
+            else
+            {
+                MessageBox.Show("Errore di salvataggio:\n" + res.Descrizione, "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return res;
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            Result res = Save();
+            if (res.Ok)
+            {
+                Close();
+            }
+        }
+
+        private void btnAnnulla_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnDiagnostica_Click(object sender, EventArgs e)
+        {
+            if (dbr.IsModified() ||
+                dbtAttrezzaggi.IsModified() ||
+                dbtControlli.IsModified() ||
+                dbtControlliAstine.IsModified() ||
+                dbtFermi.IsModified() ||
+                dbtOperatori.IsModified() ||
+                dbtOrdini.IsModified() ||
+                dbtProduzioni.IsModified())
+            {
+                if (MessageBox.Show("Salvare le modifiche?", "Attenzione", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes) Save();
+            }
+            Lotto.Diagnose(true);
+            txtElab_Diagnostica.Text = Lotto.DiagOk ? "OK" : "ERR";
+            txtElab_DiagnosticaMsg.Text = Lotto.DiagMsg;
+            Lotto.Save();
+        }
+    }
+}

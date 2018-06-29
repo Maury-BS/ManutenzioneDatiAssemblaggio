@@ -1,0 +1,387 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace Metra.ManutenzioneDatiAssemblaggio
+{
+    public static class Skins
+    {
+        public enum ColorSet { Menu, StandardList, ColorList, StandardForm }
+
+        public static Color ForeColor(ColorSet t)
+        {
+            switch (t)
+            {
+                case ColorSet.Menu:
+                    return Menu.ForeColor;
+                case ColorSet.StandardList:
+                    return StandardList.ForeColor;
+                case ColorSet.ColorList:
+                    return ColorList.ForeColor;
+                case ColorSet.StandardForm:
+                    return StandardForm.ForeColor;
+                default:
+                    return SystemColors.ControlText;
+            }
+        }
+
+        public static Color TitleForeColor(ColorSet t)
+        {
+            switch (t)
+            {
+                case ColorSet.Menu:
+                    return Menu.ForeColor;
+                case ColorSet.StandardList:
+                    return StandardList.ForeColor;
+                case ColorSet.ColorList:
+                    return ColorList.ForeColor;
+                case ColorSet.StandardForm:
+                    return StandardForm.GroupBoxTitleForeColor;
+                default:
+                    return SystemColors.ControlText;
+            }
+        }
+
+        public static Color BackColor(ColorSet t)
+        {
+            switch (t)
+            {
+                case ColorSet.Menu:
+                    return Menu.BackColor;
+                case ColorSet.StandardList:
+                    return StandardList.BackColor;
+                case ColorSet.ColorList:
+                    return ColorList.BackColor;
+                case ColorSet.StandardForm:
+                    return StandardForm.BackColor;
+                default:
+                    return SystemColors.Control;
+            }
+        }
+
+        public static Color ListBackColor(ColorSet t)
+        {
+            switch (t)
+            {
+                case ColorSet.Menu:
+                    return Menu.BackColor;
+                case ColorSet.StandardList:
+                    return StandardList.ListBackColor;
+                case ColorSet.ColorList:
+                    return ColorList.ListBackColor;
+                case ColorSet.StandardForm:
+                default:
+                    return SystemColors.ControlDark;
+            }
+        }
+
+        private static class Menu
+        {
+            public static Color BackColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                            return Color.Lime;
+                        case "Blue":
+                        case "Blu":
+                            return Color.Navy;
+                        case "Yellow":
+                        case "Giallo":
+                            return Color.Goldenrod;
+                        default:
+                            return Color.Red;
+                    }
+                }
+            }
+            public static Color ForeColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                            return Color.Black;//.FromArgb(55, 0, 0);
+                        case "Blue":
+                        case "Blu":
+                        case "Yellow":
+                        case "Giallo":
+                        default:
+                            return Color.White;
+                    }
+                }
+            }
+        }
+
+        private static class StandardList
+        {
+            public static Color BackColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                        case "Blue":
+                        case "Blu":
+                        case "Yellow":
+                        case "Giallo":
+                        default:
+                            return Color.Gray;
+                    }
+                }
+            }
+            public static Color ListBackColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                        case "Blue":
+                        case "Blu":
+                        case "Yellow":
+                        case "Giallo":
+                        default:
+                            return Color.DimGray;
+                    }
+                }
+            }
+            public static Color ForeColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                        case "Blue":
+                        case "Blu":
+                        case "Yellow":
+                        case "Giallo":
+                        default:
+                            return Color.White;
+                    }
+                }
+            }
+        }
+
+        private static class StandardForm
+        {
+            public static Color BackColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                        case "Blue":
+                        case "Blu":
+                        case "Yellow":
+                        case "Giallo":
+                        default:
+                            return SystemColors.Control;
+                    }
+                }
+            }
+            public static Color ForeColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                        case "Blue":
+                        case "Blu":
+                        case "Yellow":
+                        case "Giallo":
+                        default:
+                            return SystemColors.ControlText;
+                    }
+                }
+            }
+            public static Color ControlBackColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                        case "Blue":
+                        case "Blu":
+                        case "Yellow":
+                        case "Giallo":
+                        default:
+                            return SystemColors.ControlLightLight;
+                    }
+                }
+            }
+            public static Color ControlForeColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                        case "Blue":
+                        case "Blu":
+                        case "Yellow":
+                        case "Giallo":
+                        default:
+                            return SystemColors.ControlText;
+                    }
+                }
+            }
+            public static Color GroupBoxTitleForeColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                            return Color.DarkGreen;
+                        case "Blue":
+                        case "Blu":
+                            return Color.DarkBlue;
+                        case "Yellow":
+                        case "Giallo":
+                            return Color.DarkGoldenrod;
+                        default:
+                            return Color.Red;
+                    }
+                }
+            }
+        }
+
+        private static class ColorList
+        {
+            public static Color BackColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                            return Color.Green;
+                        case "Blue":
+                        case "Blu":
+                            return Color.Navy;
+                        case "Yellow":
+                        case "Giallo":
+                            return Color.Goldenrod;
+                        default:
+                            return Color.Firebrick;
+                    }
+                }
+            }
+            public static Color ListBackColor
+            {
+                get
+                {
+                    switch (Properties.Settings.Default.Skin)
+                    {
+                        case "Green":
+                        case "Verde":
+                            return Color.FromArgb(0, 64, 0);
+                        case "Blue":
+                        case "Blu":
+                            return Color.FromArgb(0, 0, 64);
+                        case "Yellow":
+                        case "Giallo":
+                            return Color.DarkGoldenrod;
+                        default:
+                            return Color.Maroon;
+                    }
+                }
+            }
+            public static Color ForeColor
+            {
+                get { return Color.White; }
+            }
+        }
+
+        public static void SetColors(Control Control, ColorSet ColSet)
+        {
+            Control.BackColor = BackColor(ColSet);
+            foreach (Control c in Control.Controls)
+            {
+                string Type = c.GetType().ToString();
+                switch (Type)
+                {
+                    case "System.Windows.Forms.GroupBox":
+                        ((GroupBox)c).ForeColor = StandardForm.GroupBoxTitleForeColor;
+                        SetColors(c, ColSet);
+                        break;
+                    case "System.Windows.Forms.DataGridView":
+                        ((DataGridView)c).BackgroundColor = ListBackColor(ColSet);
+                        break;
+                    case "System.Windows.Forms.Label":
+                        ((Label)c).ForeColor = ForeColor(ColSet);
+                        break;
+                    case "System.Windows.Forms.TextBox":
+                    case "System.Windows.Forms.ComboBox":
+                    case "System.Windows.Forms.ListBox":
+                    case "System.Windows.Forms.CheckedListBox":
+                        c.ForeColor = StandardForm.ControlForeColor;
+                        c.BackColor = StandardForm.ControlBackColor;
+                        break;
+                    case "System.Windows.Forms.Panel":
+                    case "System.Windows.Forms.SplitContainer":
+                    case "System.Windows.Forms.SplitterPanel":
+                        SetColors(c, ColSet);
+                        break;
+                }
+            }
+        }
+
+        public static void SetGridColors(DataGridView dgvElenco)
+        {
+            //if (Properties.Settings.Default.Skin_AS400Style)
+            //{
+            //    //colori AS400
+            //    dgvElenco.RowTemplate.DefaultCellStyle.BackColor = Color.Black;
+            //    dgvElenco.RowTemplate.DefaultCellStyle.ForeColor = Color.Lime;
+            //    dgvElenco.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.Lime;
+            //    dgvElenco.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            //    dgvElenco.BackgroundColor = Color.FromArgb(64, 64, 64);
+            //    dgvElenco.RowHeadersVisible = false;
+            //}
+            //else
+            //{
+                //colori standard
+                dgvElenco.DefaultCellStyle = null;
+                dgvElenco.DefaultCellStyle.BackColor = SystemColors.Window;
+                dgvElenco.DefaultCellStyle.ForeColor = SystemColors.ControlText;
+                dgvElenco.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
+                dgvElenco.DefaultCellStyle.SelectionForeColor = SystemColors.HighlightText;
+
+                dgvElenco.AlternatingRowsDefaultCellStyle = null;
+                dgvElenco.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
+                dgvElenco.AlternatingRowsDefaultCellStyle.ForeColor = SystemColors.ControlText;
+                dgvElenco.AlternatingRowsDefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
+                dgvElenco.AlternatingRowsDefaultCellStyle.SelectionForeColor = SystemColors.HighlightText;
+
+                dgvElenco.RowTemplate.DefaultCellStyle = null;
+
+                dgvElenco.BackgroundColor = Color.DimGray;                
+                dgvElenco.RowHeadersVisible = false;
+                dgvElenco.RowHeadersWidth = 20;
+            //}
+        }
+    }
+}

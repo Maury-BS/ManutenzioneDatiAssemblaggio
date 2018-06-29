@@ -1,0 +1,32 @@
+﻿namespace Metra.ManutenzioneDatiAssemblaggio
+{
+    class Authentication
+    {
+       
+        public static string UserName
+        {
+            get
+            {
+                return System.Environment.UserName;
+            }
+        }
+
+        public static string MachineName
+        {
+            get
+            {
+                return System.Environment.MachineName;
+            }
+        }
+
+        public static bool UserCanChangePressNotes
+        {
+            get { return true; }
+        }
+
+        public static bool UserCanChangeClassify
+        {
+            get { return false; }
+        }
+    }
+}

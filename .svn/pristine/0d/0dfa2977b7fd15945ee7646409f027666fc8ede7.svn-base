@@ -1,0 +1,629 @@
+﻿namespace Metra.ManutenzioneDatiAssemblaggio
+{
+    partial class ucLots
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpFine = new System.Windows.Forms.DateTimePicker();
+            this.dtpInizio = new System.Windows.Forms.DateTimePicker();
+            this.dgvElenco = new System.Windows.Forms.DataGridView();
+            this.lblTitolo = new System.Windows.Forms.Label();
+            this.cmbStato = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmsElenco = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selezionaTuttoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deselezionaTuttoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.segnaDaElaborareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.annullaDaElaborareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuovoLottoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.eliminaLottosoloNuoviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAggiorna = new System.Windows.Forms.Button();
+            this.btnDiagnostica = new System.Windows.Forms.Button();
+            this.btnAnnulla = new System.Windows.Forms.Button();
+            this.cmbPostazione = new System.Windows.Forms.ComboBox();
+            this.cmbDiagnostica = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtArticolo = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.NumeroLotto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TsInizio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Postazione = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodiceArticolo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodiceCRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Campionatura = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CausaleChiusura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Elab_Diagnostica = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Elab_QtaOrdine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Elab_QtaProdotta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Elab_MinutiAttrezzaggio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Elab_MinutiProduzione = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Elab_MinutiFermo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Elab_MinutiDichiarazioni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Elab_MinutiLotto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Elab_Riconciliare = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Elab_Riconciliato = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvElenco)).BeginInit();
+            this.cmsElenco.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(217, 41);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(42, 16);
+            this.label11.TabIndex = 47;
+            this.label11.Text = "Stato:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(406, 68);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(19, 16);
+            this.label2.TabIndex = 46;
+            this.label2.Text = "al";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(217, 68);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 16);
+            this.label1.TabIndex = 45;
+            this.label1.Text = "Periodo: dal";
+            // 
+            // dtpFine
+            // 
+            this.dtpFine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFine.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFine.Location = new System.Drawing.Point(433, 65);
+            this.dtpFine.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpFine.Name = "dtpFine";
+            this.dtpFine.Size = new System.Drawing.Size(94, 22);
+            this.dtpFine.TabIndex = 5;
+            this.dtpFine.CloseUp += new System.EventHandler(this.Filtra);
+            // 
+            // dtpInizio
+            // 
+            this.dtpInizio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpInizio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpInizio.Location = new System.Drawing.Point(306, 65);
+            this.dtpInizio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpInizio.Name = "dtpInizio";
+            this.dtpInizio.Size = new System.Drawing.Size(92, 22);
+            this.dtpInizio.TabIndex = 4;
+            this.dtpInizio.CloseUp += new System.EventHandler(this.Filtra);
+            // 
+            // dgvElenco
+            // 
+            this.dgvElenco.AllowUserToAddRows = false;
+            this.dgvElenco.AllowUserToDeleteRows = false;
+            this.dgvElenco.AllowUserToResizeRows = false;
+            this.dgvElenco.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvElenco.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvElenco.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvElenco.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvElenco.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NumeroLotto,
+            this.TsInizio,
+            this.Postazione,
+            this.CodiceArticolo,
+            this.CodiceCRA,
+            this.Campionatura,
+            this.CausaleChiusura,
+            this.Elab_Diagnostica,
+            this.Elab_QtaOrdine,
+            this.Elab_QtaProdotta,
+            this.Elab_MinutiAttrezzaggio,
+            this.Elab_MinutiProduzione,
+            this.Elab_MinutiFermo,
+            this.Elab_MinutiDichiarazioni,
+            this.Elab_MinutiLotto,
+            this.Elab_Riconciliare,
+            this.Elab_Riconciliato});
+            this.dgvElenco.Location = new System.Drawing.Point(8, 95);
+            this.dgvElenco.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvElenco.Name = "dgvElenco";
+            this.dgvElenco.RowHeadersVisible = false;
+            this.dgvElenco.RowHeadersWidth = 20;
+            this.dgvElenco.RowTemplate.Height = 23;
+            this.dgvElenco.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvElenco.Size = new System.Drawing.Size(773, 315);
+            this.dgvElenco.TabIndex = 0;
+            this.dgvElenco.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvElenco_CellDoubleClick);
+            this.dgvElenco.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvElenco_RowPostPaint);
+            // 
+            // lblTitolo
+            // 
+            this.lblTitolo.AutoSize = true;
+            this.lblTitolo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitolo.ForeColor = System.Drawing.Color.White;
+            this.lblTitolo.Location = new System.Drawing.Point(8, 6);
+            this.lblTitolo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitolo.Name = "lblTitolo";
+            this.lblTitolo.Size = new System.Drawing.Size(545, 24);
+            this.lblTitolo.TabIndex = 44;
+            this.lblTitolo.Text = "Dichiarazioni di Assemblaggio - Da raccolta dati a GESTIONALE";
+            // 
+            // cmbStato
+            // 
+            this.cmbStato.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStato.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStato.FormattingEnabled = true;
+            this.cmbStato.Items.AddRange(new object[] {
+            "TUTTO",
+            "Non elaborate",
+            "Non riconciliate",
+            "Riconciliate"});
+            this.cmbStato.Location = new System.Drawing.Point(306, 38);
+            this.cmbStato.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbStato.Name = "cmbStato";
+            this.cmbStato.Size = new System.Drawing.Size(221, 24);
+            this.cmbStato.TabIndex = 2;
+            this.cmbStato.SelectedIndexChanged += new System.EventHandler(this.Filtra);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(9, 41);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 16);
+            this.label3.TabIndex = 50;
+            this.label3.Text = "Postazione:";
+            // 
+            // cmsElenco
+            // 
+            this.cmsElenco.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selezionaTuttoToolStripMenuItem,
+            this.deselezionaTuttoToolStripMenuItem,
+            this.copiaToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.segnaDaElaborareToolStripMenuItem,
+            this.annullaDaElaborareToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.modificaToolStripMenuItem,
+            this.nuovoLottoToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.eliminaLottosoloNuoviToolStripMenuItem});
+            this.cmsElenco.Name = "cmsElenco";
+            this.cmsElenco.Size = new System.Drawing.Size(184, 198);
+            this.cmsElenco.Opening += new System.ComponentModel.CancelEventHandler(this.cmsElenco_Opening);
+            // 
+            // selezionaTuttoToolStripMenuItem
+            // 
+            this.selezionaTuttoToolStripMenuItem.Name = "selezionaTuttoToolStripMenuItem";
+            this.selezionaTuttoToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.selezionaTuttoToolStripMenuItem.Text = "Seleziona tutto";
+            this.selezionaTuttoToolStripMenuItem.Click += new System.EventHandler(this.selezionaTuttoToolStripMenuItem_Click);
+            // 
+            // deselezionaTuttoToolStripMenuItem
+            // 
+            this.deselezionaTuttoToolStripMenuItem.Name = "deselezionaTuttoToolStripMenuItem";
+            this.deselezionaTuttoToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.deselezionaTuttoToolStripMenuItem.Text = "Deseleziona tutto";
+            this.deselezionaTuttoToolStripMenuItem.Click += new System.EventHandler(this.deselezionaTuttoToolStripMenuItem_Click);
+            // 
+            // copiaToolStripMenuItem
+            // 
+            this.copiaToolStripMenuItem.Name = "copiaToolStripMenuItem";
+            this.copiaToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.copiaToolStripMenuItem.Text = "Copia";
+            this.copiaToolStripMenuItem.Click += new System.EventHandler(this.copiaToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 6);
+            // 
+            // segnaDaElaborareToolStripMenuItem
+            // 
+            this.segnaDaElaborareToolStripMenuItem.Name = "segnaDaElaborareToolStripMenuItem";
+            this.segnaDaElaborareToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.segnaDaElaborareToolStripMenuItem.Text = "Segna da elaborare";
+            this.segnaDaElaborareToolStripMenuItem.Click += new System.EventHandler(this.segnaDaElaborareToolStripMenuItem_Click);
+            // 
+            // annullaDaElaborareToolStripMenuItem
+            // 
+            this.annullaDaElaborareToolStripMenuItem.Name = "annullaDaElaborareToolStripMenuItem";
+            this.annullaDaElaborareToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.annullaDaElaborareToolStripMenuItem.Text = "Annulla da elaborare";
+            this.annullaDaElaborareToolStripMenuItem.Click += new System.EventHandler(this.annullaDaElaborareToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 6);
+            // 
+            // modificaToolStripMenuItem
+            // 
+            this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
+            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.modificaToolStripMenuItem.Text = "Apri lotto";
+            this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
+            // 
+            // nuovoLottoToolStripMenuItem
+            // 
+            this.nuovoLottoToolStripMenuItem.Name = "nuovoLottoToolStripMenuItem";
+            this.nuovoLottoToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.nuovoLottoToolStripMenuItem.Text = "Nuovo lotto";
+            this.nuovoLottoToolStripMenuItem.Click += new System.EventHandler(this.nuovoLottoToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 6);
+            // 
+            // eliminaLottosoloNuoviToolStripMenuItem
+            // 
+            this.eliminaLottosoloNuoviToolStripMenuItem.Name = "eliminaLottosoloNuoviToolStripMenuItem";
+            this.eliminaLottosoloNuoviToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.eliminaLottosoloNuoviToolStripMenuItem.Text = "Elimina lotto";
+            this.eliminaLottosoloNuoviToolStripMenuItem.Click += new System.EventHandler(this.eliminaLottoToolStripMenuItem_Click);
+            // 
+            // btnAggiorna
+            // 
+            this.btnAggiorna.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAggiorna.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnAggiorna.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAggiorna.Location = new System.Drawing.Point(8, 415);
+            this.btnAggiorna.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAggiorna.Name = "btnAggiorna";
+            this.btnAggiorna.Size = new System.Drawing.Size(205, 30);
+            this.btnAggiorna.TabIndex = 7;
+            this.btnAggiorna.Text = "Aggiorna visualizzazione";
+            this.btnAggiorna.UseVisualStyleBackColor = false;
+            this.btnAggiorna.Click += new System.EventHandler(this.btnAggiorna_Click);
+            // 
+            // btnDiagnostica
+            // 
+            this.btnDiagnostica.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDiagnostica.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDiagnostica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDiagnostica.Location = new System.Drawing.Point(221, 415);
+            this.btnDiagnostica.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDiagnostica.Name = "btnDiagnostica";
+            this.btnDiagnostica.Size = new System.Drawing.Size(155, 30);
+            this.btnDiagnostica.TabIndex = 56;
+            this.btnDiagnostica.Text = "Diagnostica";
+            this.btnDiagnostica.UseVisualStyleBackColor = false;
+            this.btnDiagnostica.Click += new System.EventHandler(this.btnDiagnostica_Click);
+            // 
+            // btnAnnulla
+            // 
+            this.btnAnnulla.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAnnulla.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnAnnulla.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnnulla.Location = new System.Drawing.Point(698, 420);
+            this.btnAnnulla.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAnnulla.Name = "btnAnnulla";
+            this.btnAnnulla.Size = new System.Drawing.Size(91, 30);
+            this.btnAnnulla.TabIndex = 72;
+            this.btnAnnulla.Text = "Chiudi";
+            this.btnAnnulla.UseVisualStyleBackColor = true;
+            this.btnAnnulla.Visible = false;
+            this.btnAnnulla.Click += new System.EventHandler(this.btnAnnulla_Click);
+            // 
+            // cmbPostazione
+            // 
+            this.cmbPostazione.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPostazione.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPostazione.FormattingEnabled = true;
+            this.cmbPostazione.Location = new System.Drawing.Point(91, 38);
+            this.cmbPostazione.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbPostazione.Name = "cmbPostazione";
+            this.cmbPostazione.Size = new System.Drawing.Size(111, 24);
+            this.cmbPostazione.TabIndex = 73;
+            this.cmbPostazione.SelectedIndexChanged += new System.EventHandler(this.Filtra);
+            // 
+            // cmbDiagnostica
+            // 
+            this.cmbDiagnostica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDiagnostica.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDiagnostica.FormattingEnabled = true;
+            this.cmbDiagnostica.Items.AddRange(new object[] {
+            "TUTTO",
+            "OK",
+            "ERR"});
+            this.cmbDiagnostica.Location = new System.Drawing.Point(626, 38);
+            this.cmbDiagnostica.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbDiagnostica.Name = "cmbDiagnostica";
+            this.cmbDiagnostica.Size = new System.Drawing.Size(154, 24);
+            this.cmbDiagnostica.TabIndex = 74;
+            this.cmbDiagnostica.SelectedIndexChanged += new System.EventHandler(this.Filtra);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(537, 41);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 16);
+            this.label5.TabIndex = 75;
+            this.label5.Text = "Diagnostica:";
+            // 
+            // txtArticolo
+            // 
+            this.txtArticolo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArticolo.Location = new System.Drawing.Point(91, 65);
+            this.txtArticolo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtArticolo.Name = "txtArticolo";
+            this.txtArticolo.Size = new System.Drawing.Size(111, 22);
+            this.txtArticolo.TabIndex = 3;
+            this.txtArticolo.TextChanged += new System.EventHandler(this.Filtra);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(8, 68);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 16);
+            this.label4.TabIndex = 51;
+            this.label4.Text = "Articolo:";
+            // 
+            // NumeroLotto
+            // 
+            this.NumeroLotto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.NumeroLotto.DefaultCellStyle = dataGridViewCellStyle1;
+            this.NumeroLotto.Frozen = true;
+            this.NumeroLotto.HeaderText = "Lotto";
+            this.NumeroLotto.Name = "NumeroLotto";
+            this.NumeroLotto.Width = 65;
+            // 
+            // TsInizio
+            // 
+            this.TsInizio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.TsInizio.DefaultCellStyle = dataGridViewCellStyle2;
+            this.TsInizio.HeaderText = "Data";
+            this.TsInizio.Name = "TsInizio";
+            this.TsInizio.Width = 63;
+            // 
+            // Postazione
+            // 
+            this.Postazione.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Postazione.DataPropertyName = "IDPostazione";
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.Postazione.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Postazione.HeaderText = "Postazione";
+            this.Postazione.Name = "Postazione";
+            this.Postazione.Width = 103;
+            // 
+            // CodiceArticolo
+            // 
+            this.CodiceArticolo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.CodiceArticolo.DefaultCellStyle = dataGridViewCellStyle4;
+            this.CodiceArticolo.HeaderText = "Articolo";
+            this.CodiceArticolo.Name = "CodiceArticolo";
+            this.CodiceArticolo.Width = 80;
+            // 
+            // CodiceCRA
+            // 
+            this.CodiceCRA.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.CodiceCRA.DefaultCellStyle = dataGridViewCellStyle5;
+            this.CodiceCRA.HeaderText = "CRA";
+            this.CodiceCRA.Name = "CodiceCRA";
+            this.CodiceCRA.Width = 61;
+            // 
+            // Campionatura
+            // 
+            this.Campionatura.DataPropertyName = "Campionatura";
+            this.Campionatura.FalseValue = "0";
+            this.Campionatura.HeaderText = "Camp";
+            this.Campionatura.Name = "Campionatura";
+            this.Campionatura.TrueValue = "1";
+            this.Campionatura.Width = 60;
+            // 
+            // CausaleChiusura
+            // 
+            this.CausaleChiusura.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CausaleChiusura.HeaderText = "Chiusura";
+            this.CausaleChiusura.MinimumWidth = 100;
+            this.CausaleChiusura.Name = "CausaleChiusura";
+            // 
+            // Elab_Diagnostica
+            // 
+            this.Elab_Diagnostica.HeaderText = "Diag.";
+            this.Elab_Diagnostica.Name = "Elab_Diagnostica";
+            this.Elab_Diagnostica.Width = 50;
+            // 
+            // Elab_QtaOrdine
+            // 
+            this.Elab_QtaOrdine.HeaderText = "Ord (barre)";
+            this.Elab_QtaOrdine.Name = "Elab_QtaOrdine";
+            this.Elab_QtaOrdine.Width = 60;
+            // 
+            // Elab_QtaProdotta
+            // 
+            this.Elab_QtaProdotta.HeaderText = "Prod. (barre)";
+            this.Elab_QtaProdotta.Name = "Elab_QtaProdotta";
+            this.Elab_QtaProdotta.Width = 60;
+            // 
+            // Elab_MinutiAttrezzaggio
+            // 
+            this.Elab_MinutiAttrezzaggio.HeaderText = "Attr. (minuti)";
+            this.Elab_MinutiAttrezzaggio.Name = "Elab_MinutiAttrezzaggio";
+            this.Elab_MinutiAttrezzaggio.Width = 70;
+            // 
+            // Elab_MinutiProduzione
+            // 
+            this.Elab_MinutiProduzione.HeaderText = "Prod (minuti)";
+            this.Elab_MinutiProduzione.Name = "Elab_MinutiProduzione";
+            this.Elab_MinutiProduzione.Width = 70;
+            // 
+            // Elab_MinutiFermo
+            // 
+            this.Elab_MinutiFermo.HeaderText = "Fermo (minuti)";
+            this.Elab_MinutiFermo.Name = "Elab_MinutiFermo";
+            this.Elab_MinutiFermo.Width = 70;
+            // 
+            // Elab_MinutiDichiarazioni
+            // 
+            this.Elab_MinutiDichiarazioni.HeaderText = "Totale (minuti)";
+            this.Elab_MinutiDichiarazioni.Name = "Elab_MinutiDichiarazioni";
+            this.Elab_MinutiDichiarazioni.Width = 80;
+            // 
+            // Elab_MinutiLotto
+            // 
+            this.Elab_MinutiLotto.HeaderText = "Lotto (minuti)";
+            this.Elab_MinutiLotto.Name = "Elab_MinutiLotto";
+            this.Elab_MinutiLotto.Width = 80;
+            // 
+            // Elab_Riconciliare
+            // 
+            this.Elab_Riconciliare.HeaderText = "Elab.";
+            this.Elab_Riconciliare.Name = "Elab_Riconciliare";
+            this.Elab_Riconciliare.Width = 50;
+            // 
+            // Elab_Riconciliato
+            // 
+            this.Elab_Riconciliato.HeaderText = "Ric.";
+            this.Elab_Riconciliato.Name = "Elab_Riconciliato";
+            this.Elab_Riconciliato.Width = 50;
+            // 
+            // ucLots
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.Gray;
+            this.Controls.Add(this.cmbDiagnostica);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.cmbPostazione);
+            this.Controls.Add(this.btnAnnulla);
+            this.Controls.Add(this.btnDiagnostica);
+            this.Controls.Add(this.btnAggiorna);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cmbStato);
+            this.Controls.Add(this.txtArticolo);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.dgvElenco);
+            this.Controls.Add(this.lblTitolo);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dtpFine);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtpInizio);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "ucLots";
+            this.Size = new System.Drawing.Size(789, 450);
+            this.Load += new System.EventHandler(this.ucLotti_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvElenco)).EndInit();
+            this.cmsElenco.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtpFine;
+        private System.Windows.Forms.DateTimePicker dtpInizio;
+        private System.Windows.Forms.DataGridView dgvElenco;
+        private System.Windows.Forms.Label lblTitolo;
+        private System.Windows.Forms.ComboBox cmbStato;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ContextMenuStrip cmsElenco;
+        private System.Windows.Forms.ToolStripMenuItem selezionaTuttoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deselezionaTuttoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem segnaDaElaborareToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem annullaDaElaborareToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem modificaToolStripMenuItem;
+        private System.Windows.Forms.Button btnAggiorna;
+        private System.Windows.Forms.ToolStripMenuItem copiaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuovoLottoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem eliminaLottosoloNuoviToolStripMenuItem;
+        private System.Windows.Forms.Button btnDiagnostica;
+        private System.Windows.Forms.Button btnAnnulla;
+        private System.Windows.Forms.ComboBox cmbPostazione;
+        private System.Windows.Forms.ComboBox cmbDiagnostica;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtArticolo;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumeroLotto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TsInizio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Postazione;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodiceArticolo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodiceCRA;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Campionatura;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CausaleChiusura;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Elab_Diagnostica;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Elab_QtaOrdine;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Elab_QtaProdotta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Elab_MinutiAttrezzaggio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Elab_MinutiProduzione;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Elab_MinutiFermo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Elab_MinutiDichiarazioni;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Elab_MinutiLotto;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Elab_Riconciliare;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Elab_Riconciliato;
+    }
+}
+
